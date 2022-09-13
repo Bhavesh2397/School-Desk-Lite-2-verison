@@ -1,0 +1,96 @@
+string url = ApiRoutes.UserNotificationSubscriptions;// + ApiRoutes.MinimumDateValue.ToString("yyyy/MM/dd");
+                var resultNotificationSubscriptions = await ApiCaller.Get(url);
+                var userName = Preferences.Get("UserName", null);
+                if (!string.IsNullOrWhiteSpace(resultNotificationSubscriptions))
+                {
+                    if (resultNotificationSubscriptions.Contains("employee"))
+                    {
+                        var employeeNotificationSubscriptions = JsonConvert.DeserializeObject<EmployeeNotificationSubscription>(resultNotificationSubscriptions);
+                        NotificationProfile = employeeNotificationSubscriptions.employee.employee + "" + employeeNotificationSubscriptions.employee.userSubscription + "" + employeeNotificationSubscriptions.employee.serviceType;
+
+                        NotificationProfiles = NotificationProfile.Split('~');
+
+                        if (Preferences.Get("Profile" + userName, null) != NotificationProfile)
+                        {
+                            Preferences.Set("Profile" + userName, NotificationProfile);
+                            Preferences.Set("isSubscribedProfile" + userName, true);
+                            CrossFirebasePushNotification.Current.Subscribe(NotificationProfiles);
+                        }
+                        if (employeeNotificationSubscriptions.employee.classTeachers.Count > 0)
+                        {
+                            foreach (var classTeacher in employeeNotificationSubscriptions.employee.classTeachers)
+                            {
+                                NotificationAcademicClass += classTeacher.academicClass + "~";
+                            }
+                            NotificationAcademicClass = NotificationAcademicClass.Remove(NotificationAcademicClass.Length - 1);
+                            NotificationAcademicClasses = NotificationAcademicClass.Split('~');
+
+                            if (Preferences.Get("Academic" + userName, null) != NotificationAcademicClass)
+                            {
+                                Preferences.Set("Academic" + userName, NotificationAcademicClass);
+                                Preferences.Set("isSubscribedAcademic" + userName, true);
+                                CrossFirebasePushNotification.Current.Subscribe(NotificationAcademicClasses);
+                            }
+                        }
+
+                        if (employeeNotificationSubscriptions.employee.employeeSchools.Count > 0)
+                        {
+                            foreach (var employeeSchool in employeeNotificationSubscriptions.employee.employeeSchools)
+                            {
+                                NotificationAnnouncement += employeeSchool.userSchool + "~";
+                            }
+                            NotificationAnnouncement += employeeNotificationSubscriptions.employee.homeSchool;
+                            //NotificationAnnouncement = NotificationAnnouncement.Remove(NotificationAnnouncement.Length - 1);
+                            NotificationAnnouncements = NotificationAnnouncement.Split('~');
+                            if (Preferences.Get("Announcement" + userName, null) != NotificationAnnouncement)
+                            {
+                                Preferences.Set("Announcement" + userName, NotificationAnnouncement);
+                                Preferences.Set("isSubscribedAnnouncement" + userName, true);
+                                CrossFirebasePushNotification.Current.Subscribe(NotificationAnnouncements);
+                            }
+                        }
+
+                    }
+                    if (resultNotificationSubscriptions.Contains("student"))
+                    {
+
+                        var studentNotificationSubscriptions = JsonConvert.DeserializeObject<StudentNotificationSubscription>(resultNotificationSubscriptions);
+///
+                        NotificationProfile = studentNotificationSubscriptions.student.uid + "" + studentNotificationSubscriptions.student.userSubscription + "" + studentNotificationSubscriptions.student.studentHouse + "~" + studentNotificationSubscriptions.student.serviceType;
+                        NotificationProfiles = NotificationProfile.Split('~');
+
+                        if (Preferences.Get("Profile" + userName, null) != NotificationProfile)
+                        {
+                            Preferences.Set("Profile" + userName, NotificationProfile);
+                            Preferences.Set("isSubscribedProfile" + userName, true);
+                            CrossFirebasePushNotification.Current.Subscribe(NotificationProfiles);
+                        }
+
+                        if (studentNotificationSubscriptions.student.classStudents.Count > 0)
+                        {
+                            foreach (var classStudent in studentNotificationSubscriptions.student.classStudents)
+                            {
+                                NotificationAcademicClass += classStudent.academicClass + "~";
+                            }
+                            NotificationAcademicClass = NotificationAcademicClass.Remove(NotificationAcademicClass.Length - 1);
+                            NotificationAcademicClasses = NotificationAcademicClass.Split('~');
+
+                            if (Preferences.Get("Academic" + userName, null) != NotificationAcademicClass)
+                            {
+                                Preferences.Set("Academic" + userName, NotificationAcademicClass);
+                                Preferences.Set("isSubscribedAcademic" + userName, true);
+                                CrossFirebasePushNotification.Current.Subscribe(NotificationAcademicClasses);
+                            }
+                        }
+
+                        NotificationAnnouncement = studentNotificationSubscriptions.student.school + "" + studentNotificationSubscriptions.student.section + "" + studentNotificationSubscriptions.student.gradeLevel + "" + studentNotificationSubscriptions.student.divisionId + "" + studentNotificationSubscriptions.student.academicTerm;
+                        NotificationAnnouncements = NotificationAnnouncement.Split('~');
+
+                        if (Preferences.Get("Announcement" + userName, null) != NotificationAnnouncement)
+                        {
+                            Preferences.Set("Announcement" + userName, NotificationAnnouncement);
+                            Preferences.Set("isSubscribedAnnouncement" + userName, true);
+                            CrossFirebasePushNotification.Current.Subscribe(NotificationAnnouncements);
+                        }
+                    }
+                }

@@ -1,0 +1,168 @@
+{
+  "AppMenus": {
+    "LastUpdateOn":"06-15-2022 03:13:38",
+	"MenuIconUrl":"https://project.rbkei.org/img/SDAPPMenuIcon/",
+    "Data": [
+      {
+        "ID": "1",
+        "MenuName": "Portfolios",
+        "MenuUrlPath": "Employees/GetEmployeeProfile?IsProfile=true",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/settings-profile.png",
+        "Employee":"true",
+        "Student":"false",
+        "iOS":"True",
+        "Android":"True"
+      },
+		{
+        "ID": "2",
+        "MenuName": "Portfolios",
+        "MenuUrlPath": "Student/GetStudentProfile?IsProfile=true",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/settings-profile.png",
+        "Employee":"false",
+        "Student":"true",
+        "iOS":"True",
+        "Android":"True"
+      },
+	  {
+        "ID": "3",
+        "MenuName": "Calendar",
+        "MenuUrlPath": "Employees/GetEmployeeProfile?IsCalendar=true",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/calendar.png",
+        "Employee":"true",
+        "Student":"false",
+        "iOS":"True",
+        "Android":"True"
+      },
+	  {
+        "ID": "4",
+        "MenuName": "Calendar",
+        "MenuUrlPath": "Student/GetStudentProfile?IsCalendar=true",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/calendar.png",
+        "Employee":"false",
+        "Student":"true",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "5",
+        "MenuName": "Academic",
+        "MenuUrlPath": "Academics/AcademicDetails",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/Education.png",
+        "Employee":"true",
+        "Student":"true",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "6",
+        "MenuName": "Notice Board",
+        "MenuUrlPath": "Aannouncement/GetNoticeBoardByUserSession?LayOut=true",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/noticeboard.png",
+        "Employee":"true",
+        "Student":"true",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "7",
+        "MenuName": "Settings",
+        "MenuUrlPath": "home/response",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/audit.png",
+        "Employee":"True",
+        "Student":"false",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "8",
+        "MenuName": "Security",
+        "MenuUrlPath": "home/SecuritySettings",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/Access.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "9",
+        "MenuName": "Reports",
+        "MenuUrlPath": "Reports/Reports?MenuItem=Reports",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/Customer-insights-manager.png",
+        "Employee":"True",
+        "Student":"false",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "10",
+        "MenuName": "Accounts",
+        "MenuUrlPath": "home/commingsoon",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/accountant.png",
+        "Employee":"True",
+        "Student":"True",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "11",
+        "MenuName": "Administration",
+        "MenuUrlPath": "",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/microsoft-admin.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"false",
+        "Android":"false"
+      },
+      {
+        "ID": "12",
+        "MenuName": "TimeTable",
+        "MenuUrlPath": "",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/timetable.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"false",
+        "Android":"false"
+      },
+      {
+        "ID": "13",
+        "MenuName": "Submission",
+        "MenuUrlPath": "",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/submit.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"false",
+        "Android":"false"
+      },
+      {
+        "ID": "14",
+        "MenuName": "Fees",
+        "MenuUrlPath": "",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/rupee.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"false",
+        "Android":"false"
+      },
+      {
+        "ID": "15",
+        "MenuName": "Announcement",
+        "MenuUrlPath": "Aannouncement/MainTabAnnouncements",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/submit.png",
+        "Employee":"True",
+        "Student":"True",
+        "iOS":"True",
+        "Android":"True"
+      },
+      {
+        "ID": "16",
+        "MenuName": "Support",
+        "MenuUrlPath": "support/GetSupportTickets",
+        "MenuIconName": "https://project.rbkei.org/img/SDAPPMenuIcon/submit.png",
+        "Employee":"false",
+        "Student":"false",
+        "iOS":"false",
+        "Android":"false"
+      }
+    ]
+  }
+}

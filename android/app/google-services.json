@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "884222662599",
+    "project_id": "school-desk-lite",
+    "storage_bucket": "school-desk-lite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884222662599:android:9ee08c41bce8e0c729abe2",
+        "android_client_info": {
+          "package_name": "com.schooldesklite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884222662599-ru9k5r0raicqs4iouka62hdgmb3cfchs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.schooldesklite",
+            "certificate_hash": "50cb1658ebafc978a37a599743c9022115698f46"
+          }
+        },
+        {
+          "client_id": "884222662599-v9372ajj08m914aqv180nlm6kvd7t1kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqsPfhwWG9JJhFUMKErYx-mf7Y2Y_dOqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884222662599-v9372ajj08m914aqv180nlm6kvd7t1kh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
