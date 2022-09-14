@@ -210,7 +210,7 @@ class _getOtpState extends State<getOtp> {
             style: GoogleFonts.kanit(color: Colors.white, fontSize: 18),
           ),
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
+            //  backgroundColor: Colors.amber,
               elevation: 0,
               padding: EdgeInsets.all(12)),
         ),

@@ -104,6 +104,8 @@ class _LoginPageState extends State<LoginPage> {
           deviceId: '',
           fcmtoken: '',
           );
+      print('profileImage ----> ${userAccount.profileImage}');
+      print('profileImage ----> ${userAccount.profileURL}');
       lmodel.appUserHash = userAccount.appUserHash;
       lmodel.appUserId = userAccount.appUserId;
       lmodel.isAccountActive = true;

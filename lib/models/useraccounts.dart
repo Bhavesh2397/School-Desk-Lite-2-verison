@@ -172,7 +172,7 @@ Future<UserAccount> createTokan(String userName, String password) async {
       hideLoader();
       Map<String, dynamic> jsondata = Map<String, dynamic>.from(
           json.decode(await response.stream.bytesToString()));
-
+print('dgfjngudfhugugfu  --> ${jsondata['profileURL'].toString()}');
       return UserAccount.fromJson(jsondata);
     }
     return userAccount;

@@ -288,7 +288,8 @@ void SubscribeTopic1() async {
 /////////////Topic 2///////////////
 void SubscribeTopic2(bool isSubscribed) async {
   if (isSubscribed) {
-    const snackBar = SnackBar(content: Text('Subscribed'));
+
+   SnackBar(content: Text('Subscribed'));
     
       await FirebaseMessaging.instance
       .subscribeToTopic('SchoolDeskLite2')

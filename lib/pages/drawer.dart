@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,8 +18,10 @@ class MyDrawer extends StatefulWidget {
   State<MyDrawer> createState() => _MyDrawerState();
 }
 
+
 class _MyDrawerState extends State<MyDrawer> {
  bool isSubscribed = true;
+ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var uContext = LocalStoredModel(
       token: '',
       appUserHash: '',
@@ -45,6 +48,7 @@ class _MyDrawerState extends State<MyDrawer> {
     await getUserContextData().then((pref) async {
       setState(() {
         uContext = pref;
+        print(uContext.profileURL);
       });
     });
     //await getUserContextData();
@@ -59,155 +63,164 @@ class _MyDrawerState extends State<MyDrawer> {
         systemNavigationBarDividerColor: Color.fromARGB(255, 255, 204, 0),
         systemNavigationBarColor: Color.fromARGB(255, 255, 204, 0),
         systemNavigationBarIconBrightness: Brightness.dark));
-    return Drawer(
-      child: Container(
-        color: Colors.white,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.zero,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/UserAccountPage');
-                  },
-                  child: UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 114, 198, 164)),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 97, 167, 139),
-                      backgroundImage: NetworkImage(
-                        uContext.profileImage,
-                      ),
-                      onBackgroundImageError: (_, __) {
-                        setState(() {
-                          //this._isError = true;
-                        });
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Colors.transparent,
+      body: InkWell(
+        onTap: (){
+          print('kigiof');
+        //  _scaffoldKey.currentState!.openEndDrawer();
+        },
+        child: Drawer(
+          child: Container(
+            color: Colors.white,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                DrawerHeader(
+                    padding: EdgeInsets.zero,
+                    margin: EdgeInsets.zero,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/UserAccountPage');
                       },
+                      child: UserAccountsDrawerHeader(
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 114, 198, 164)),
+                        currentAccountPicture: CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 97, 167, 139),
+                          backgroundImage: NetworkImage(
+                            uContext.profileImage,
+                          ),
+                          onBackgroundImageError: (_, __) {
+                            setState(() {
+                              //this._isError = true;
+                            });
+                          },
 
-                      //  backgroundImage: NetworkImage(uContext.profileImage),
-                    ),
-                    accountName: Text(uContext.fullName),
-                    accountEmail: Text(uContext.email),
+                          //  backgroundImage: NetworkImage(uContext.profileImage),
+                        ),
+                        accountName: Text(uContext.fullName),
+                        accountEmail: Text(uContext.email),
+                      ),
+                    )),
+
+                ListTile(
+                  hoverColor: Color.fromARGB(255, 255, 204, 0),
+                  leading: Icon(FontAwesomeIcons.calculator,
+                      color: Color.fromARGB(255, 119, 119, 119)),
+                  title: Text(
+                    'Mathametics',
+                    textScaleFactor: 1,
+                    style: GoogleFonts.kanit(
+                        color: Color.fromARGB(255, 119, 119, 119)),
                   ),
-                )),
+                ),
 
-            ListTile(
-              hoverColor: Color.fromARGB(255, 255, 204, 0),
-              leading: Icon(FontAwesomeIcons.calculator,
-                  color: Color.fromARGB(255, 119, 119, 119)),
-              title: Text(
-                'Mathametics',
-                textScaleFactor: 1,
-                style: GoogleFonts.kanit(
-                    color: Color.fromARGB(255, 119, 119, 119)),
-              ),
-            ),
-            
-            ListTile(
-              leading: Icon(FontAwesomeIcons.flask,
-                  size: 20, color: Color.fromARGB(255, 119, 119, 119)),
-              title: Text(
-                'Science',
-                textScaleFactor: 1,
-                style: GoogleFonts.kanit(
-                    color: Color.fromARGB(255, 119, 119, 119)),
-              ),
-            ),
-            const Divider(
-              height: 0,
-              thickness: 1,
-              indent: 5,
-              endIndent: 10,
-              color: Colors.amber,
-            ),
-            ListTile(
-              leading: Icon(FontAwesomeIcons.message,
-                  color: Color.fromARGB(255, 119, 119, 119)),
-              title: Text(
-                'Announcement',
-                textScaleFactor: 1,
-                style: GoogleFonts.kanit(
-                    color: Color.fromARGB(255, 119, 119, 119)),
-              ),
-            ),
-            ListTile(
-              leading: Icon(FontAwesomeIcons.gear,
-                  color: Color.fromARGB(255, 119, 119, 119)),
-              title: Text(
-                'Settings',
-                textScaleFactor: 1,
-                style: GoogleFonts.kanit(
-                    color: Color.fromARGB(255, 119, 119, 119)),
-              ),
-            ),
-            SizedBox(
-              height: 0,
-            ),
-            // /SubscribeTopic1()
-            InkWell(
-            
-              onTap: NotificationSubscribed,
-              child: ListTile(
-                leading: Icon( Icons.notifications),
-                title: Text(
-                  'Subscribe School Topics 2',
-                  textScaleFactor: 1,
-                  style: GoogleFonts.kanit(
-                      color: Color.fromARGB(255, 119, 119, 119)),
+                ListTile(
+                  leading: Icon(FontAwesomeIcons.flask,
+                      size: 20, color: Color.fromARGB(255, 119, 119, 119)),
+                  title: Text(
+                    'Science',
+                    textScaleFactor: 1,
+                    style: GoogleFonts.kanit(
+                        color: Color.fromARGB(255, 119, 119, 119)),
+                  ),
                 ),
-              ),
-            ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.remove('UserName');
-                prefs.clear();
-                var isLoggedIn = await deleteAllUserContext();
-                if (isLoggedIn.isLoggedIn == false &&
-                    isLoggedIn.token.isEmpty) {
-                  Navigator.of(context).pushNamed('/');
-                }
-              },
-              child: ListTile(
-                leading: Icon(FontAwesomeIcons.rightFromBracket,
-                    color: Color.fromARGB(255, 119, 119, 119)),
-                title: Text(
-                  'Log Out',
-                  textScaleFactor: 1,
-                  style: GoogleFonts.kanit(
-                      color: Color.fromARGB(255, 119, 119, 119)),
+                const Divider(
+                  height: 0,
+                  thickness: 1,
+                  indent: 5,
+                  endIndent: 10,
+                  color: Colors.amber,
                 ),
-              ),
+                ListTile(
+                  leading: Icon(FontAwesomeIcons.message,
+                      color: Color.fromARGB(255, 119, 119, 119)),
+                  title: Text(
+                    'Announcement',
+                    textScaleFactor: 1,
+                    style: GoogleFonts.kanit(
+                        color: Color.fromARGB(255, 119, 119, 119)),
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(FontAwesomeIcons.gear,
+                      color: Color.fromARGB(255, 119, 119, 119)),
+                  title: Text(
+                    'Settings',
+                    textScaleFactor: 1,
+                    style: GoogleFonts.kanit(
+                        color: Color.fromARGB(255, 119, 119, 119)),
+                  ),
+                ),
+                SizedBox(
+                  height: 0,
+                ),
+                // /SubscribeTopic1()
+                InkWell(
+                  onTap: NotificationSubscribed,
+                  child: ListTile(
+                    leading: Icon(isSubscribed == true? Icons.notifications: Icons.notifications_off_rounded),
+                    title: Text(
+                      'Subscribe School Topics 2',
+                      textScaleFactor: 1,
+                      style: GoogleFonts.kanit(
+                          color: Color.fromARGB(255, 119, 119, 119)),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.remove('UserName');
+                    prefs.clear();
+                    var isLoggedIn = await deleteAllUserContext();
+                    if (isLoggedIn.isLoggedIn == false &&
+                        isLoggedIn.token.isEmpty) {
+                      Navigator.of(context).pushNamed('/');
+                    }
+                  },
+                  child: ListTile(
+                    leading: Icon(FontAwesomeIcons.rightFromBracket,
+                        color: Color.fromARGB(255, 119, 119, 119)),
+                    title: Text(
+                      'Log Out',
+                      textScaleFactor: 1,
+                      style: GoogleFonts.kanit(
+                          color: Color.fromARGB(255, 119, 119, 119)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                ),
+                Divider(
+                  height: 1,
+                  thickness: 1,
+                  indent: 6,
+                  endIndent: 6,
+                  color: Color.fromARGB(255, 255, 204, 0),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                    child: Text(
+                      'School Desk',
+                      style: GoogleFonts.kanit(
+                        fontSize: 15,
+                        color: Color.fromARGB(255, 255, 204, 0),
+                      ),
+                    )),
+                Center(
+                    child: Text(
+                      'Version 1.0.0',
+                      style: GoogleFonts.kanit(color: Colors.grey, fontSize: 12),
+                    ))
+              ],
             ),
-            SizedBox(
-              height: 160,
-            ),
-            Divider(
-              height: 1,
-              thickness: 1,
-              indent: 6,
-              endIndent: 6,
-              color: Color.fromARGB(255, 255, 204, 0),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Center(
-                child: Text(
-              'School Desk',
-              style: GoogleFonts.kanit(
-                fontSize: 15,
-                color: Color.fromARGB(255, 255, 204, 0),
-              ),
-            )),
-            Center(
-                child: Text(
-              'Version 1.0.0',
-              style: GoogleFonts.kanit(color: Colors.grey, fontSize: 12),
-            ))
-          ],
+          ),
         ),
       ),
     );
@@ -215,18 +228,29 @@ class _MyDrawerState extends State<MyDrawer> {
 
   void NotificationSubscribed() {
     if (isSubscribed == true) {
-      SnackBar(content: Text('Subscribed'));
+      _scaffoldKey.currentState!.showSnackBar(SnackBar(
+          content: Text('Subscribed')
+      ));
+     // SnackBar(content: Text('Subscribed'));
       FontAwesomeIcons.bellSlash;
-
       isSubscribed = false;
       SubscribeTopic2(isSubscribed);
+      setState(() {});
+      print('1111');
     } else {
+      print('22222');
       isSubscribed = true;
       SubscribeTopic2(isSubscribed);
       FontAwesomeIcons.bell;
+      _scaffoldKey.currentState!.showSnackBar(SnackBar(
+          content: Text('UnSubscribed')
+      ));
+      setState(() {
+
+      });
     }
-    setState(() {
-      isSubscribed = !isSubscribed;
-    });
+    // setState(() {
+    //   isSubscribed = !isSubscribed;
+    // });
   }
 }
